@@ -48,16 +48,15 @@ class UserModel extends BaseModel {
      * @param $input
      * @return mixed
      */
-    public function updateUser($input) {
-        $sql = 'UPDATE users SET 
-                 name = "' . mysqli_real_escape_string(self::$_connection, $input['name']) .'", 
-                 password="'. md5($input['password']) .'"
-                WHERE id = ' . $input['id'];
-
-        $user = $this->update($sql);
-
-        return $user;
+    public function updateUser($data) {
+        $id = $data['id']; // Ensure you are getting the user ID from the POST data
+        $name = $data['name'];
+        $password = password_hash($data['password'], PASSWORD_DEFAULT); // Hash the password
+    
+        $query = "UPDATE users SET name = '$name', password = '$password' WHERE id = '$id'";
+        return $this->query($query);
     }
+    
 
     /**
      * Insert user
@@ -86,7 +85,7 @@ class UserModel extends BaseModel {
             //Keep this line to use Sql Injection
             //Don't change
             //Example keyword: abcef%";TRUNCATE banks;##
-            $users = self::$_connection->multi_query($sql);
+            // $users = self::$_connection->multi_query($sql);
 
             //Get data
             $users = $this->query($sql);
@@ -97,4 +96,20 @@ class UserModel extends BaseModel {
 
         return $users;
     }
+
+
+    public function accessCheck($id, $id1){
+        if($id == $id1){
+            return true;
+        }
+    }
+
+
+   
+    
+
+
 }
+
+    
+
