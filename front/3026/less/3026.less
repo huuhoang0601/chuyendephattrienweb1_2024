@@ -1,0 +1,213 @@
+// Variables
+@font-family: Arial, sans-serif;
+@bg-color: #152545;
+@text-color: #999;
+@button-bg: #1e90ff;
+@button-hover-bg: #152545;
+@column-bg: #13213e;
+@social-icon-color: #999;
+@link-color: #1e90ff;
+@link-hover-color: #ffffff;
+
+// Common spacing variables
+@padding-large: 40px;
+@margin-small: 20px;
+@margin-medium: 10px;
+
+// Styles for the component
+.type-3026 {
+    font-family: @font-family;
+    background-color: @bg-color;
+    color: @text-color;
+    margin: 0;
+    padding: 0;
+
+    .frame-layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: @padding-large;
+
+        .line {
+            display: flex;
+            flex-wrap: wrap; /* Cho phép các hàng xuống hàng trên màn hình nhỏ hơn */
+            justify-content: space-between;
+
+            .column-2 {
+                flex: 2;
+                margin: 0 @margin-small;
+
+                button {
+                    padding: @margin-medium;
+                    background-color: @button-bg;
+                    color: #ffffff;
+                    border-radius: 5px;
+                    border: 2px solid @button-bg;
+                    transition: 0.5s;
+
+                    &:hover {
+                        background-color: @button-hover-bg;
+                    }
+                }
+            }
+
+            .column-10 {
+                flex: 10;
+                margin: 0 @margin-small;
+                background-color: @column-bg;
+                color: @text-color;
+                padding: 20px;
+                border-radius: 5px;
+
+                .column-4 {
+                    flex: 4;
+                    margin: 0 @margin-small;
+
+                    h3 {
+                        font-size: 18px;
+                        margin-bottom: @margin-small;
+                    }
+
+                    p,
+                    ul,
+                    form {
+                        font-size: 14px;
+                        line-height: 1.6;
+                        margin-bottom: @margin-small;
+                    }
+
+                    ul {
+                        list-style: none; /* Không có dấu đầu dòng */
+                        padding: 0;
+
+                        li {
+                            margin-bottom: 10px;
+                            cursor: pointer;
+
+                            i {
+                                margin-right: 10px;
+                            }
+
+                            &:hover {
+                                color: @button-bg; /* Đổi màu văn bản thành xanh */
+                                text-decoration: underline; /* Thêm gạch chân */
+                            }
+                        }
+                    }
+
+                    p i {
+                        color: @button-bg;
+                    }
+
+                    /* Styling the subscribe section */
+                    .subscribe {
+                        position: relative;
+                    
+                        input[type="email"] {
+                            padding: 10px;
+                            width: calc(100% - 20px);
+                            border: none;
+                            margin-bottom: 10px;
+                            background-color: #152545; /* Màu gốc */
+                            color: #ffffff;
+                            transition: background-color 0.5s, color 0.5s; /* Thêm hiệu ứng chuyển màu */
+                            
+                            &:focus {
+                                background-color: #ffffff; /* Đổi màu nền khi focus */
+                                color: #000000; /* Đổi màu chữ khi focus */
+                                
+                                // Đổi màu nút khi input có focus
+                                + button {
+                                    background-color: #1e90ff; /* Đổi màu nút khi input được focus */
+                                }
+                            }
+                        }
+                    
+                        button {
+                            position: absolute;
+                            right: 30px;
+                            top: 0;
+                            height: calc(100% - 20px);
+                            background-color: #152545; /* Màu gốc */
+                            border: none;
+                            padding: 0 15px;
+                            color: #ffffff;
+                            cursor: pointer;
+                            transition: background-color 0.5s; /* Thêm hiệu ứng chuyển màu */
+                    
+                            &:hover {
+                                background-color: #00bfff; /* Đổi màu khi hover */
+                            }
+                        }
+                    }
+                    
+                    
+                    
+
+                    .social-icons {
+                        margin-top: 20px;
+
+                        i {
+                            color: @social-icon-color;
+                            margin-right: 10px;
+                            font-size: 18px;
+
+                            &:hover {
+                                animation: changeColor 0.5s ease-out forwards;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .column-6 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px;
+                background-color: @bg-color;
+
+                p {
+                    margin: 0;
+                }
+
+                a {
+                    color: @link-color;
+                    text-decoration: none;
+                    transition: 0.5s;
+
+                    &:hover {
+                        color: @link-hover-color;
+                    }
+                }
+
+                .payment-icons {
+                    i {
+                        font-size: 28px;
+                        margin: 0 5px;
+                        color: @text-color;
+                        transition: 0.5s;
+
+                        &:hover {
+                            animation: changeColor 0.5s ease-out forwards;
+                        }
+                    }
+                }
+            }
+        }
+
+        .line:last-child {
+            .column-6 {
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+// Keyframes
+@keyframes changeColor {
+    100% {
+        color: @link-color;
+    }
+}

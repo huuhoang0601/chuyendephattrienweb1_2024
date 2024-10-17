@@ -1,0 +1,173 @@
+// Variables
+// Color
+@primary: #68c419;
+@blue: #59a9ff;
+@dark: #2c3e50;
+@light: #ffffff;
+@text: #7f8c8d;
+@icon: #058ffc;
+@bg: #717e65;
+
+
+// Size
+@font-size: 14px;
+
+// Common spacing variables
+@padding-large: 50px 15px 15px 15px; // Padding cho column
+@margin-bottom: 20px; // Khoảng cách giữa các dòng
+@margin-top-bottom: 20px; // Khoảng cách cho h1
+@image: url(../3010-screenshot.png);
+
+.type-3010 {
+    text-align: center;
+
+    .frame-layout {
+        width: 100%;
+        max-width: 1900px; // Giới hạn chiều rộng tối đa trên màn hình lớn
+        margin: 0 auto; // Căn giữa container
+        padding: 15px; // Thêm padding bên trong để tránh nội dung chạm vào mép
+        box-sizing: border-box; // Đảm bảo padding không làm tăng kích thước tổng thể
+        position: relative; // Thêm vị trí relative để sử dụng cho frame::after
+
+        // Styles cho pseudo-element
+        &::after {
+            content: "";
+            width: 100%; // Sử dụng chiều rộng của .frame
+            height: 100%; // Sử dụng chiều cao của .frame
+            background: @bg @image center center no-repeat;
+            background-size: contain;
+            position: absolute;
+            top: 0; // Đặt ở phía trên cùng
+            left: 0; // Đặt ở bên trái
+            opacity: 0.1; // Độ mờ
+            z-index: -1; // Đưa xuống dưới cùng
+        }
+
+        .line {
+            display: flex;
+            flex-wrap: wrap; // Cho phép các cột xuống hàng khi không còn đủ chỗ
+            justify-content: center; // Căn giữa các cột
+            width: 100%;
+            margin-bottom: @margin-bottom; // Khoảng cách giữa các dòng
+
+            h1 {
+                color: @dark;
+                font-size: 2em;
+                transform: translateY(30px);
+                animation: slideShow 1.2s ease-out forwards;
+                margin: @margin-top-bottom; // Khoảng cách trên và dưới
+                width: 100%; // Đảm bảo h1 chiếm toàn bộ chiều rộng
+            }
+
+            h2 {
+                color: @primary;
+                font-size: @font-size;
+                margin-bottom: 10px;
+                width: 100%; // Đảm bảo h2 chiếm toàn bộ chiều rộng
+            }
+        }
+
+        .column {
+            text-align: center;
+            padding: @padding-large; // Sử dụng biến padding
+            box-sizing: border-box;
+            border-radius: 10px;
+            transform: translateX(0);
+            opacity: 0;
+
+            // Styles cho màn hình trung bình
+            @media (min-width: 768px) and (max-width: 991.98px) {
+                flex: 0 0 50%; // Hai cột
+                max-width: 50%;
+            }
+
+            // Styles cho màn hình lớn
+            @media (min-width: 992px) {
+                flex: 0 0 25%; // Bốn cột
+                max-width: 25%;
+            }
+
+            i {
+                font-size: 40px;
+                color: @icon;
+                background-color: @light;
+                padding: 20px;
+                border-radius: 50%;
+                margin-bottom: 20px;
+            }
+
+            h3 {
+                color: @dark;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                color: @text;
+                font-size: @font-size;
+                margin-bottom: 10px;
+            }
+
+            button {
+                background-color: @primary;
+                color: @light;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: @font-size;
+                width: 150px;
+                transition: 0.3s;
+
+                &:hover {
+                    background-color: @blue;
+                }
+            }
+
+            &:hover {
+                background-color: @light;
+            }
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                transform: translateX(-100vw);
+                animation: slideShow 0.8s ease-out forwards;
+            }
+
+            &:nth-child(3),
+            &:nth-child(4) {
+                transform: translateX(100vw);
+                animation: slideShow 0.8s ease-out forwards;
+            }
+
+            // Delay để các thẻ xuất hiện dần dần
+            &:nth-child(1) {
+                animation-delay: 0.2s;
+            }
+
+            &:nth-child(2) {
+                animation-delay: 0.1s;
+            }
+
+            &:nth-child(3) {
+                animation-delay: 0.1s;
+            }
+
+            &:nth-child(4) {
+                animation-delay: 0.2s;
+            }
+        }
+    }
+}
+
+// Unified keyframes
+@keyframes slideShow {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
